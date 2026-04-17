@@ -1,4 +1,8 @@
-# QA Case Study — MakeMyCV.com
+<div align="center">
+  <img src="docs/screens/makemycv.svg" width="400">
+</div>
+
+# QA Case Study
 
 > Étude de cas technique pour le poste de QA Engineer Senior chez Dotworld.
 
@@ -16,6 +20,7 @@ MakeMyCV est une application web SaaS permettant aux utilisateurs de créer, per
 qa-case-study-makemycv/
 ├── README.md                    # Ce fichier — vue d'ensemble & getting started
 ├── docs/
+│   ├── screens/                 # Dossier contenant les captures d'écrans
 │   ├── 01-test-strategy.md      # Cartographie fonctionnelle, matrice de risques, plan de test
 │   ├── 02-test-cases.md         # Cas de test détaillés (10 cas manuels)
 │   ├── 03-bug-reports.md        # Bugs identifiés durant l'exploration
