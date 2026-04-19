@@ -84,7 +84,7 @@
 | **ID** | TC-005 |
 | **Titre** | Création d'un CV complet depuis la sélection de template jusqu'à la prévisualisation |
 | **Préconditions** | L'utilisateur est connecté. Aucun CV existant (ou création d'un nouveau). |
-| **Étapes** | 1. Dans Document. Cliquer sur « Créer un CV » puis « Nouveau CV »<br> 2. Sélectionner « Importer mon CV » pour importer un PDF ou Word <br> 3. Renseigner les informations d'identité : Prénom `Jean`, Nom de famille `Dupont`, Intitulédu poste `Développeur Full Stack`, Photo, Téléphone `0601020304`, E-mail `jean.dupont@example.com`, Code postal `75000`, Ville `Paris` <br> 4. Vérifier et ajouter une section Expérience : Entreprise `DotWorld`, Poste `QA Senior`, `01/2022 - 12/2023`, Description `Garant de la qualité logicielle et de l'expérience utilisateur.` <br> 5. Ajouter une section Formation : `Master Informatique, Université Paris, 2021` <br> 6. Ajouter 3 Compétences : `JavaScript`, `React`, `Node.js` <br> 7. Vérifier la prévisualisation en temps réel |
+| **Étapes** | 1. Cliquer sur « Créer un CV » puis « Nouveau CV » et choisir « En partant de zéro » <br> 2. Renseigner les informations d'identité : Prénom `Jean`, Nom de famille `Dupont`, Intitulédu poste `Développeur Full Stack`, Photo, Téléphone `0601020304`, E-mail `jean.dupont@example.com`, Code postal `75000`, Ville `Paris` <br> 4. Vérifier et ajouter une section Expérience : Entreprise `DotWorld`, Poste `QA Senior`, `01/2022 - 12/2023`, Description `Garant de la qualité logicielle et de l'expérience utilisateur.` <br> 5. Ajouter une section Formation : `Master Informatique, Université Paris, 2021` <br> 6. Ajouter 3 Compétences : `JavaScript`, `React`, `Node.js` <br> 7. Vérifier la prévisualisation en temps réel |
 | **Résultat attendu** | Chaque modification se reflète instantanément dans le panneau de prévisualisation. Le CV est sauvegardé automatiquement. Aucune perte de donnée entre les sections. |
 | **Résultat obtenu** | ✅ Mise à jour temps réel fonctionnelle, auto-save actif |
 | **Statut** | ✅ Pass |
@@ -101,7 +101,7 @@
 | **Préconditions** | L'utilisateur a accédé à l'éditeur via la méthode « Importer mon CV ». Un CV valide a été importé. L'utilisateur est dans la section Expériences. |
 | **Étapes** | 1. Cliquer sur « + Ajouter une expérience » <br> 2. Ne renseigner pas tous les champs <br> 3. Cliquer sur « Enregistrer » ou tenter de passer à l'étape suivante |
 | **Résultat attendu** | La section n'est pas ajoutée. Un message de validation guide l'utilisateur sur les champs requis. |
-| **Résultat obtenu** | ⚠️ La section vide est ajoutée seulement avec `Intitulé du poste` dans le CV sans avertissement — voir BUG-002 |
+| **Résultat obtenu** | ⚠️ La section vide est ajoutée seulement avec `Intitulé du poste` dans le CV sans avertissement — voir BUG-003 |
 | **Statut** | ❌ Fail |
 | **Sévérité** | Majeur |
 
@@ -116,7 +116,7 @@
 | **Préconditions** | L'utilisateur a accédé à l'éditeur via la méthode « Importer mon CV ». L'utilisateur est en train d'ajouter ou de modifier une expérience professionnelle. |
 | **Étapes** | 1. Dans le formulaire d'ajout d'expérience <br> 2. Renseigner Date de début : `06/2023` <br> 3. Renseigner Date de fin : `01/2022` (antérieure) <br> 4. Tenter d'enregistrer |
 | **Résultat attendu** | Un message d'erreur signale l'incohérence : *"La date de fin doit être postérieure à la date de début"*. La sauvegarde est bloquée. |
-| **Résultat obtenu** | ⚠️ Aucune validation côté client — les dates incohérentes sont acceptées et affichées dans le CV — voir BUG-012|
+| **Résultat obtenu** | ⚠️ Aucune validation côté client — les dates incohérentes sont acceptées et affichées dans le CV — voir BUG-007|
 | **Statut** | ❌ Fail |
 | **Sévérité** | Mineur |
 
@@ -194,7 +194,7 @@
 
 ### TC-012 — Import d'un CV rédigé en caractères CJK (mandarin)
 
-> Rattaché au **Parcours 2 — Création via Import CV** (cas d'erreur — encodage caractères non-latins) — lié à BUG-011
+> Rattaché au **Parcours 2 — Création via Import CV** (cas d'erreur — encodage caractères non-latins) — lié à BUG-009
 
 | Champ | Détail |
 |-------|--------|
