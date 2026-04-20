@@ -1,0 +1,24 @@
+{
+  "name": "qa-case-study-makemycv",
+  "version": "1.0.0",
+  "description": "QA Case Study — MakeMyCV.com — Dotworld 2026",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:report": "playwright show-report",
+    "test:chromium": "playwright test --project=chromium",
+    "test:mobile": "playwright test --project=mobile-chrome --project=mobile-safari",
+    "test:smoke": "playwright test --grep @smoke",
+    "install:browsers": "playwright install --with-deps"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.0",
+    "@types/node": "^20.0.0",
+    "dotenv": "^16.4.5",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

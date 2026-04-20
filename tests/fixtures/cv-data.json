@@ -1,0 +1,53 @@
+{
+  "complete": {
+    "description": "CV complet avec toutes les sections renseignées — happy path",
+    "personal": {
+      "first_name": "Jean",
+      "last_name": "Dupont",
+      "job_title": "QA Senior",
+      "email": "jean.dupont@example.com",
+      "phone": "0601020304",
+      "address": "Paris",
+      "postal_code": "75000"
+    },
+    "experience": {
+      "company": "DotWorld",
+      "position": "QA",
+      "startDate": "01/2022",
+      "endDate": "12/2023",
+      "description": "Garant de la qualité logicielle et de l'expérience utilisateur."
+    },
+    "education": {
+      "school": "Université Paris-Saclay",
+      "degree": "Master Informatique",
+      "year": "2021"
+    },
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js"
+    ]
+  },
+  "empty": {
+    "description": "CV sans aucun contenu — utilisé pour tester les validations de champs vides"
+  },
+  "longDescription": {
+    "description": "CV avec une description d'expérience de +2000 caractères — edge case mise en page PDF",
+    "experience": {
+      "company": "Acme Corp",
+      "position": "Développeur Backend",
+      "startDate": "01/2020",
+      "endDate": "12/2023",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+    }
+  },
+  "invalidDates": {
+    "description": "CV avec dates incohérentes — utilisé pour tester BUG-006 et BUG-007",
+    "experience": {
+      "company": "Test Corp",
+      "position": "Testeur",
+      "startDate": "06/2023",
+      "endDate": "01/2022"
+    }
+  }
+}

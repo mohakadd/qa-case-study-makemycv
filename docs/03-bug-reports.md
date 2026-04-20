@@ -23,6 +23,8 @@ Anomalies identifiées lors de l'exploration et des tests manuels sur `makemycv.
 | BUG-010 | Les boutons "Print CV" et "Email CV" ouvrent la modale de téléchargement au lieu d'imprimer ou d'envoyer par email | 🟠 Majeur | Ouvert |
 | BUG-011 | Headshot payant révélé seulement après l'upload de la photo | 🔴 Critique | Ouvert |
 | BUG-012 | Aucun bouton pour quitter le tunnel Headshot Pro ni certaines sections de l'éditeur | 🟠 Majeur | Ouvert |
+| BUG-013 | Le formulaire de connexion ne permet pas d'utiliser un mot de passe (Magic Link imposé) | 🟠 Majeur | Ouvert |
+| BUG-014 | Typo sur le message de confirmation de connexion ("Check you inbox" au lieu de "Check your inbox") | 🟢 Cosmétique | Ouvert |
 
 
 
@@ -220,3 +222,35 @@ Anomalies identifiées lors de l'exploration et des tests manuels sur `makemycv.
 | **Environnement** | Chrome 147, Windows 11, 1920×1080 |
 | **Capture d'écran** | <img src="screens/BUG-012.png" width="500"> |
 | **Note** | Combiné à BUG-011 (découverte tardive du paywall Headshot), l'utilisateur se retrouve piégé dans un tunnel payant sans issue visible — double dark pattern. |
+
+---
+
+## BUG-013
+
+**Titre :** Le formulaire de connexion ne permet pas d'utiliser un mot de passe (Magic Link imposé)  
+**Sévérité :** 🟠 Majeur
+
+| Champ | Détail |
+|-------|--------|
+| **Étapes de reproduction** | 1. Accéder à la page de connexion <br> 2. Renseigner son adresse email <br> 3. Cliquer sur « Continuer » ou chercher à entrer un mot de passe |
+| **Résultat attendu** | L'utilisateur peut saisir un mot de passe ou demander un Magic Link. |
+| **Résultat obtenu** | Aucun champ de mot de passe n'est affiché. La soumission impose l'envoi d'un lien par email à l'insu de l'utilisateur, forçant une sortie de l'application vers la boîte mail. |
+| **Environnement** | Chrome 147, Windows 11, 1920×1080 |
+| **Capture d'écran** | - |
+| **Note** | Ce comportement ralentit fortement l'automatisation QA (nécessite l'interception d'emails). À traiter conjointement avec la recommandation UX-07. |
+
+---
+
+## BUG-014
+
+**Titre :** Typo sur le message de confirmation d'envoi du Magic Link ("Check you inbox")  
+**Sévérité :** 🟢 Cosmétique
+
+| Champ | Détail |
+|-------|--------|
+| **Étapes de reproduction** | 1. Accéder à la page de connexion <br> 2. Renseigner son adresse email <br> 3. Cliquer sur « Continuer » |
+| **Résultat attendu** | Le message de confirmation s'affiche de manière correcte en anglais : *"Check your inbox"*. |
+| **Résultat obtenu** | Le message contient une faute de frappe : *"Check you inbox"* (il manque le "r" à "your"). |
+| **Environnement** | Chrome 147, Windows 11, 1920×1080 |
+| **Capture d'écran** | <img src="screens/BUG-014.png" width="500"> |
+| **Note** | Bien que non bloquant, ce type de faute entache la perception de qualité et de professionnalisme de la plateforme dès le premier écran. |

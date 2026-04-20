@@ -1,0 +1,21 @@
+{
+  "description": "Cartes de test Stripe — source : https://stripe.com/docs/testing",
+  "valid": {
+    "number": "4242 4242 4242 4242",
+    "expiry": "12/34",
+    "cvc": "123",
+    "description": "Carte Visa valide — paiement accepté"
+  },
+  "declined": {
+    "number": "4000 0000 0000 0002",
+    "expiry": "12/34",
+    "cvc": "123",
+    "description": "Carte refusée — génère une erreur de paiement"
+  },
+  "insufficient_funds": {
+    "number": "4000 0000 0000 9995",
+    "expiry": "12/34",
+    "cvc": "123",
+    "description": "Fonds insuffisants — génère une erreur spécifique"
+  }
+}

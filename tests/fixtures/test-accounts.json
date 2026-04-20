@@ -1,0 +1,14 @@
+{
+  "premium": {
+    "email": "qa_premium@example.com",
+    "description": "Compte avec abonnement Premium actif — utilisé pour les tests d'export PDF"
+  },
+  "free": {
+    "email": "testcvmk@proton.me",
+    "description": "Compte gratuit — utilisé pour tester les paywalls et restrictions"
+  },
+  "new": {
+    "email": "qa_new_{{timestamp}}@example.com",
+    "description": "Email généré dynamiquement pour les tests d'inscription (remplacer {{timestamp}} par Date.now())"
+  }
+}

@@ -1,0 +1,42 @@
+# Node
+node_modules/
+
+# Environnement
+.env
+.env.local
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/
+.playwright/
+playwright/.auth/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Cache et logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.eslintcache
+
+# Fichiers temporaires
+scratch/
+artifacts/
+
+# Build & Coverage
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# IDE & Editeurs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
