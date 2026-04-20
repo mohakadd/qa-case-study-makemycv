@@ -91,16 +91,13 @@ Voir le fichier : [`tests/e2e/cv-creation.test.ts`](../tests/e2e/cv-creation.tes
 
 ### Pipeline GitHub Actions
 
-Voir le fichier : [`.github/workflows/tests.yml`](../.github/workflows/tests.yml)
+L'architecture CI est séparée en **3 workflows indépendants** pour plus de clarté :
 
-### Déclencheurs et Intégration Vercel
-
-| Trigger | Tests exécutés | Objectif |
-|---------|---------------|----------|
-| `deployment_status` (Vercel) | Suite E2E complète (Chromium) | Déclenchement automatique et injection de l'URL éphémère de Preview une fois le déploiement de la PR terminé. |
-| `push` sur feature branch | Tests unitaires + API | Feedback rapide dev (~3 min) |
-| `schedule` daily 7h00 | Suite E2E multi-navigateurs | Régression quotidienne avant déploiement 9h. Permet de valider la branche de Staging avant canary. |
-| `workflow_dispatch` (Production) | Smoke Tests (Selenium/Playwright tagués `@smoke`) | Validation sur `makemycv.com` post-Canary. Notifie Slack en cas d'échec. |
+| Fichier | Trigger | Tests exécutés | Objectif |
+|---------|---------|---------------|----------|
+| [`e2e-pr.yml`](../.github/workflows/e2e-pr.yml) | `push` / `pull_request` / `deployment_status` | E2E Chromium uniquement | Tests rapides sur chaque PR. Injecte l'URL de Preview Vercel automatiquement. |
+| [`e2e-full.yml`](../.github/workflows/e2e-full.yml) | `schedule` (cron 7h00, jours ouvrés) | E2E multi-navigateurs (5 browsers) | Régression quotidienne avant déploiement canary de 9h. |
+| [`smoke-prod.yml`](../.github/workflows/smoke-prod.yml) | `workflow_dispatch` (bouton manuel) | Smoke Tests `@smoke` sur Prod | Validation post-canary sur `makemycv.com`. Alerte Slack + Rollback auto en cas d'échec. |
 
 ### Règles de merge
 

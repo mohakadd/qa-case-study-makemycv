@@ -1,0 +1,48 @@
+# Smoke tests sur Production, déclenchés manuellement après un déploiement canary
+name: Smoke Tests (Production)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  smoke-canary:
+    name: Smoke Tests (Canary — Production)
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Smoke tests on Production
+        run: npx playwright test --grep @smoke --project=chromium
+        env:
+          BASE_URL: https://makemycv.com
+          TEST_EMAIL: ${{ secrets.PROD_TEST_EMAIL }}
+          TEST_PASSWORD: ${{ secrets.PROD_TEST_PASSWORD }}
+
+      - name: Notify on failure
+        if: failure()
+        uses: 8398a7/action-slack@v3
+        with:
+          status: failure
+          text: '🚨 Smoke tests FAILED on Production after canary deploy!'
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_QA_WEBHOOK }}
+
+      - name: Trigger Vercel Automated Rollback
+        if: failure()
+        run: |
+          echo "🚨 Smoke tests failed! Initiating Vercel Instant Rollback..."
+          curl -X POST "https://api.vercel.com/v1/projects/${{ secrets.VERCEL_PROJECT_ID }}/rollback" \
+               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
