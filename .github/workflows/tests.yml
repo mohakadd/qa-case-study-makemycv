@@ -33,7 +33,7 @@ jobs:
     name: E2E Tests (PR — Chromium)
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.43.0-jammy
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
     # Exclusivité : Se lance quand la Preview Vercel est prête, ou sur un push/PR manuel du développeur
     if: (github.event_name == 'deployment_status' && github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Preview') || github.event_name == 'push' || github.event_name == 'pull_request'
     
@@ -73,7 +73,7 @@ jobs:
     name: E2E Tests (Full — Multi-browser)
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.43.0-jammy
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
     # Exclusivité : Se lance uniquement via la tâche planifiée de 7h00 ou manuellement.
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     
@@ -117,7 +117,7 @@ jobs:
     name: Smoke Tests (Canary — Production)
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.43.0-jammy
+      image: mcr.microsoft.com/playwright:v1.59.1-jammy
     # Uniquement géré par déclenchement manuel, verrouillé sur "production".
     if: github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production'
     
