@@ -9,6 +9,9 @@ import { test, expect } from '@playwright/test';
  */
 test.describe('API Tests - CV CRUD Operations', () => {
 
+  // On désactive l'attente du fichier user.json (StorageState UI) pour les tests API purs
+  test.use({ storageState: { cookies: [], origins: [] } });
+
   const API_ENDPOINT = '/api/v1/cvs';
 
   test('✅ [GET] Health Check @smoke - L\'API principale ou la page d\'accueil doit répondre en 200 OK', async ({ request, baseURL }) => {
