@@ -18,7 +18,9 @@ export class LoginPage {
   }
 
   async login(email: string) {
+    await this.emailInput.click();
     await this.emailInput.fill(email);
+    await expect(this.emailInput).toHaveValue(email);
     await this.submitBtn.click();
   }
 }

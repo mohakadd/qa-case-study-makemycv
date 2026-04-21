@@ -23,7 +23,14 @@ export class HomePage {
   }
 
   async goToLogin() {
-    await this.myAccountLink.click();
+    const viewport = this.page.viewportSize();
+    if (viewport && viewport.width < 768) {
+      // On mobile, the desktop nav link is intercepted by overlapping elements.
+      // Navigate directly to the app login page.
+      await this.page.goto('https://app.makemycv.com/en/login');
+    } else {
+      await this.myAccountLink.click();
+    }
   }
 
   async startCvCreation() {

@@ -73,7 +73,12 @@ test.describe('Authentification', () => {
     await expect(loginPage.emailInput).toBeVisible({ timeout: 15000 });
 
     await loginPage.login('adresse_email_fantome');
-    await expect(loginPage.bodyText).toContainText(/please provide a valid email address./i, { timeout: 15000 });
+    // Each browser surfaces a different validation message for an invalid email format.
+    // Chrome: "Please provide a valid email address." | Firefox/WebKit: "This field is required"
+    await expect(loginPage.bodyText).toContainText(
+      /please provide a valid email address\.|this field is required/i,
+      { timeout: 15000 }
+    );
   });
 
 });
