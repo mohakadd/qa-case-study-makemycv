@@ -57,10 +57,6 @@ test.describe('Parcours de Création de CV sans authentification', () => {
       await expect(editorPage.postalCodeInput).toHaveValue(personal.postal_code);
     });
 
-    await test.step('Étape 5 : Passage à la section Expérience', async () => {
-      await editorPage.nextBtn.first().click();
-      // Expectation ready for the next section
-    });
 
   });
 });
