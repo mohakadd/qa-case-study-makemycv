@@ -1,9 +1,10 @@
-# Suite complète multi-navigateurs, tous les jours ouvrés à 7h00
+# Suite complète multi-navigateurs, tous les jours ouvrés à 7h00 (Paris)
+# Cron à 5h00 UTC (= 7h00 CEST) pour absorber les délais GitHub Actions (~1-2h en pic de charge)
 name: E2E Tests (Full)
 
 on:
   schedule:
-    - cron: '0 7 * * 1-5'
+    - cron: '0 5 * * 1-5'
   workflow_dispatch:
 
 jobs:
