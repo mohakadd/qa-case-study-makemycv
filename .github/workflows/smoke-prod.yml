@@ -24,6 +24,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Get previous stable deployment ID
+        id: prev-deployment
+        run: |
+          PREV_UID=$(curl -s \
+            "https://api.vercel.com/v6/deployments?projectId=${{ secrets.VERCEL_PROJECT_ID }}&limit=2&target=production&state=READY" \
+            -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+            | jq -r '.deployments[1].uid')
+          echo "uid=$PREV_UID" >> $GITHUB_OUTPUT
+
       - name: Run Smoke tests on Production
         run: npx playwright test --grep @smoke --project=chromium
         env:
@@ -43,6 +52,7 @@ jobs:
       - name: Trigger Vercel Automated Rollback
         if: failure()
         run: |
-          echo "🚨 Smoke tests failed! Initiating Vercel Instant Rollback..."
-          curl -X POST "https://api.vercel.com/v1/projects/${{ secrets.VERCEL_PROJECT_ID }}/rollback" \
-               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}"
+          echo "🚨 Smoke tests failed! Rolling back to deployment ${{ steps.prev-deployment.outputs.uid }}..."
+          curl -X POST "https://api.vercel.com/v9/deployments/${{ steps.prev-deployment.outputs.uid }}/rollback" \
+               -H "Authorization: Bearer ${{ secrets.VERCEL_TOKEN }}" \
+               -H "Content-Type: application/json"
