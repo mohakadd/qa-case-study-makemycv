@@ -22,7 +22,7 @@ qa-case-study-makemycv/
 ├── docs/
 │   ├── screens/                 # Dossier contenant les captures d'écrans
 │   ├── 01-test-strategy.md      # Cartographie fonctionnelle, matrice de risques, plan de test
-│   ├── 02-test-cases.md         # Cas de test détaillés (10 cas manuels)
+│   ├── 02-test-cases.md         # Cas de test détaillés (12 cas manuels)
 │   ├── 03-bug-reports.md        # Bugs identifiés durant l'exploration
 │   ├── 04-automation.md         # Stratégie d'automatisation, architecture, CI/CD
 │   └── 05-recommendations.md    # Recommandations UX, vision QA 3 mois, métriques
@@ -77,7 +77,7 @@ npx playwright test --headed
 npx playwright test --ui
 
 # Un fichier spécifique
-npx playwright test tests/e2e/cv-creation.spec.ts
+npx playwright test tests/e2e/cv-creation.test.ts
 
 # Rapport HTML
 npx playwright show-report
@@ -85,13 +85,35 @@ npx playwright show-report
 
 ### Variables d'environnement
 
-Créer un fichier `.env` à la racine :
+Créer un fichier `.env` à la racine (voir `.env.example`) :
 
 ```env
 BASE_URL=https://makemycv.com
-TEST_EMAIL=qa_test@example.com
-TEST_PASSWORD=TestPassword123!
+TEST_EMAIL=ton_email_de_test@example.com
+TEST_PASSWORD=TonMotDePasse!
 ```
+
+### Secrets & variables GitHub Actions
+
+À configurer dans **Settings → Secrets and variables → Actions** du repo pour que la CI fonctionne :
+
+#### Secrets (sensibles — chiffrés, jamais visibles après création)
+
+| Nom | Workflow | Description |
+|-----|----------|-------------|
+| `TEST_EMAIL` | e2e-pr, e2e-full | Email du compte de test |
+| `TEST_PASSWORD` | e2e-pr, e2e-full | Mot de passe du compte de test |
+| `PROD_TEST_EMAIL` | smoke-prod | Email du compte de test Production |
+| `PROD_TEST_PASSWORD` | smoke-prod | Mot de passe du compte de test Production |
+| `VERCEL_TOKEN` | smoke-prod | Token API Vercel (Account Settings → Tokens) |
+| `SLACK_QA_WEBHOOK` | smoke-prod | Webhook Slack pour les alertes d'échec |
+
+#### Variables (non sensibles)
+
+| Nom | Workflow | Description |
+|-----|----------|-------------|
+| `BASE_URL` | e2e-pr, e2e-full | URL cible (défaut : `https://makemycv.com`) |
+| `VERCEL_PROJECT_ID` | smoke-prod | ID du projet Vercel (Project Settings → General) |
 
 ---
 
@@ -105,10 +127,10 @@ L'exploration du produit a suivi une approche **session-based testing** : 3 sess
 
 | Dimension | Observation |
 |-----------|-------------|
-| **Périmètre** | Application mature avec ~10 fonctionnalités majeures identifiées |
+| **Périmètre** | Application mature avec 14 fonctionnalités identifiées (F1–F14) |
 | **Risque principal** | Le tunnel de paiement et l'export PDF sont les points de conversion critiques |
 | **Automatisation** | Playwright (TypeScript) retenu — cohérent avec la stack Next.js/TS de Dotworld |
-| **Bugs identifiés** | 6 anomalies documentées (1 Critique, 2 Majeurs, 2 Mineurs, 1 Cosmétique) |
+| **Bugs identifiés** | 14 anomalies documentées (3 Critiques, 7 Majeurs, 3 Mineurs, 1 Cosmétique) |
 
 ### Priorités de test identifiées
 
