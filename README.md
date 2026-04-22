@@ -27,13 +27,23 @@ qa-case-study-makemycv/
 │   ├── 04-automation.md         # Stratégie d'automatisation, architecture, CI/CD
 │   └── 05-recommendations.md    # Recommandations UX, vision QA 3 mois, métriques
 ├── tests/
-│   └── e2e/
-│       ├── cv-creation.spec.ts  # Scénario E2E critique : création de CV complet
-│       └── auth.spec.ts         # Tests d'authentification (inscription / connexion)
+│   ├── e2e/
+│   │   ├── cv-creation.test.ts  # Scénario E2E critique : création de CV complet
+│   │   └── auth.test.ts         # Tests d'authentification (inscription / connexion)
+│   ├── api/
+│   │   └── cv.api.test.ts       # Tests API REST (health check, sécurité, validation schéma)
+│   ├── pages/                   # Page Object Models
+│   │   ├── HomePage.ts
+│   │   ├── LoginPage.ts
+│   │   ├── CvEditorPage.ts
+│   │   └── ProtonMailPage.ts
+│   └── fixtures/                # Données de test (JSON, PDF, DOCX)
 ├── package.json
 └── .github/
     └── workflows/
-        └── tests.yml            # Pipeline GitHub Actions
+        ├── e2e-pr.yml           # Tests E2E Chromium — déclenché sur chaque PR
+        ├── e2e-full.yml         # Suite complète multi-navigateurs — cron quotidien 7h00
+        └── smoke-prod.yml       # Smoke tests Production — déclenchement manuel post-canary
 ```
 
 ---

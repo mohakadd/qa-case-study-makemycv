@@ -42,7 +42,7 @@
     }
   },
   "invalidDates": {
-    "description": "CV avec dates incohérentes — utilisé pour tester BUG-006 et BUG-007",
+    "description": "CV avec dates incohérentes — utilisé pour tester BUG-007",
     "experience": {
       "company": "Test Corp",
       "position": "Testeur",

@@ -168,4 +168,4 @@ Les recommandations ci-dessous s'appuient sur les bugs documentés dans [`03-bug
 - **Jira** : suivi des bugs avec labels de sévérité et cycle de vie
 - **Playwright HTML Reporter** en artefact GitHub Actions : résultats de chaque run CI
 - **Confluence** : documentation des cas de test et de la stratégie QA
-- **Grafana/Pormetheus ou Datadog** : dashboards de qualité en temps réel couplés au monitoring production
+- **Grafana/Prometheus ou Datadog** : dashboards de qualité en temps réel couplés au monitoring production
